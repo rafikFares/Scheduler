@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "sched.h"
+#include <time.h>
 
 static pthread_mutex_t mutexPile = PTHREAD_MUTEX_INITIALIZER;
 
@@ -106,7 +107,8 @@ void * touverTaskSharing(void * shod){
 
             }else {
 
-                sleep(1/4);
+                struct timespec time { 0 , 1000 * 1000 };               
+                nanosleep(&time , NULL);
 
             }
         } else {// ya du ttravail dans ma pile
